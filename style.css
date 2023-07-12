@@ -1,0 +1,122 @@
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+html{
+    font-size: 20px;
+}
+
+
+body{
+    font-family: 'Times New Roman', Times, serif;
+
+    
+}
+ 
+a{
+    text-decoration: none;
+    color: #000;
+}
+a:hover{
+    color:#FFC000;}
+
+ul{
+    list-style: none;
+}
+.tax-content, .taxStatus{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+.tax-area{
+
+    display: flex;
+    align-items: center;
+    border:0.1rem solid #FFC000;
+    border-radius: 8px;
+ 
+}
+
+.tax-item{
+    border-right: 0.1rem solid #FFC000;
+    padding:0.2rem 2rem;  
+    color: #FFC000;
+}
+
+.tax-item.active{
+    
+    background-color: #FFC000;
+  
+    color: white;
+}
+
+
+.tax{  
+    font-size: 0.8rem;
+    padding: 0.2rem 2rem;
+    color: #FFC000;
+}
+
+
+label{
+    padding-right: 0.8rem;
+    color:rgba(0,0,0,0.64);
+    font-size: 1.5rem;
+ }
+
+
+ .taxResult{
+
+    display: flex;
+    align-items: center;
+    border:0.1rem solid #007bff;
+    border-radius: 8px;
+ 
+}
+
+.tax-btn{
+  
+    outline: none;
+    padding:0.2rem 2rem;  
+    color: #007bff;
+}
+
+.tax-btn:hover{
+    cursor: pointer;
+    color: #007bff;
+}
+
+.tax-btn-one{
+    border-right: 0.1rem solid #007bff;
+}
+
+.tax-btn.active{    
+    background-color: #007bff;
+    color: white;
+}
+
+.taxDetail{
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ 
+}
+
+.taxDetail ul{
+    width: 75%;
+    margin-top: 1rem;
+    background-color: #049979;
+    color: #fff;
+    padding: 2rem; 
+}
+
+.taxDetail ul li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
