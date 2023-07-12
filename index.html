@@ -19,7 +19,7 @@
 <body>
     <nav class="navbar bg-danger">
         <div class="container-fluid d-flex align-items-center justify-content-center">
-            <span class="navbar-brand mb-0 h1 p-4 text-center fw-bold">Navbar</span>
+            <span class="navbar-brand mb-0 h1 p-4 text-center fw-bold">Vergi Hesaplama</span>
         </div>
     </nav>
 
@@ -29,9 +29,13 @@
 
             <div class="tax-content">
                 <div class="tax-area">
-                    <a class="tax-item " href="#">%1</a>
-                    <a class="tax-item active" href="#">%8</a>
-                    <a class="tax-item  " href="#">%18</a>
+
+
+                    <a class="tax-item " href="#">
+                        0.01
+                    </a>
+                    <a class="tax-item active" href="#">0.08</a>
+                    <a class="tax-item  " href="#">0.18</a>
                     <a class="tax" href="#">Yüzde Gir</a>
                 </div>
 
@@ -43,7 +47,7 @@
             <div class="mb-3 row mt-4">
                 <label for="inputVal" class="col-sm-2 col-form-label">Vergi Oranı:</label>
                 <div class="col-sm-10">
-                    <input type="text" readonly class="form-control" id="inputVat" value="18">
+                    <input type="text" readonly class="form-control" id="inputVal" value="0.08">
                 </div>
             </div>
             <div class="mb-3 row">
@@ -52,16 +56,16 @@
                     <input type="text" class="form-control" id="inputAmount">
                 </div>
             </div>
-            
+
             <div class="taxStatus">
                 <div class="taxResult">
-                  <a class="tax-btn tax-btn-one active">Vergiler Dahil</a>
-                  <a class="tax-btn">Vergiler Hariç</a>
+                    <a class="tax-btn tax-btn-one active">Vergiler Dahil</a>
+                    <a class="tax-btn">Vergiler Hariç</a>
                 </div>
             </div>
-            
+
             <div class="taxDetail">
-                
+
                 <ul class="">
                     <li class="subtotal">
                         <span>Ara Toplam</span>
@@ -71,16 +75,16 @@
                         <span>Vergi</span>
                         <p class="taxValue">0,00</p>
                     </li>
-               
+
                     <li class="grandTotal">
                         <span>Genel Toplam</span>
                         <p class="sumValue">0,00</p>
                     </li>
                 </ul>
-                
+
             </div>
-            
-         
+
+
 
         </div>
 
@@ -90,6 +94,7 @@
 
     </main>
 
+    <script src="script.js"></script>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
