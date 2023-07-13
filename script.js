@@ -24,8 +24,8 @@ let newAmount = ""
 let newSub = ""
 
 function formatTL(amount) {
-    return amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' TL';
-  }
+  return amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' TL';
+}
 
 taxBtnFirst.addEventListener("click", () => {
     taxBtnFirst.classList.add("active")
@@ -80,15 +80,11 @@ taxItem.forEach((tax) => {
 
         if (tax.classList.contains("active")) {
 
-            console.log(tax.innerText);
-            inputVal.value = (tax.innerText)
-            console.log(inputVal.value);
+            inputVal.value = (tax.innerText)            
             newAmount = inputVal.value * inputAmount.value
-
             taxValue.innerHTML = newAmount
             taxPercent.innerHTML = `Vergi (${tax.innerText})`;
-            newSub = subValue.textContent
-            console.log(newSub);
+            newSub = subValue.textContent          
             sumValue.innerHTML = parseInt(newSub) + parseInt(newAmount)
             
 
