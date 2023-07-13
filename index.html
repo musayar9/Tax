@@ -60,13 +60,13 @@
             <div class="taxStatus">
                 <div class="taxResult">
                     <a class="tax-btn tax-btn-one active">Vergiler Dahil</a>
-                    <a class="tax-btn">Vergiler Hariç</a>
+                    <a class="tax-btn tax-btn-two">Vergiler Hariç</a>
                 </div>
             </div>
 
             <div class="taxDetail">
                     <h5 class="alert alert-primary mt-2 d-none alertSale">Vergi indirimi: <span class="taxSale"></span></h5>
-                <ul class="">
+                <ul class="taxIncluded">
                     <li class="subtotal">
                         <span>Ara Toplam</span>
                         <p class="subValue">0,00</p>
@@ -79,6 +79,18 @@
                     <li class="grandTotal">
                         <span>Genel Toplam</span>
                         <p class="sumValue">0,00</p>
+                    </li>
+                </ul>
+                
+                <ul class=" d-none taxExcluded">
+                    <li>
+                        <span class="percentExcluded">Vergi</span>
+                        <p class="taxTotal">0,00</p>
+                    </li>
+
+                    <li>
+                        <span>Genel Toplam</span>
+                        <p class="taxExcludedSum">0,00</p>
                     </li>
                 </ul>
 

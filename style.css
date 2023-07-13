@@ -94,7 +94,7 @@ label{
     border-right: 0.1rem solid #007bff;
 }
 
-.tax-btn.active{    
+.tax-btn-one.active, .tax-btn-two.active{    
     background-color: #007bff;
     color: white;
 }
