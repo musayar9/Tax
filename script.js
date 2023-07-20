@@ -72,7 +72,7 @@ const resultArea = () => {
     let taxPercent = inputValueStatus
     let amount = inputAmountStatus
     if (isNaN(amount) || isNaN(taxPercent)) {
-        alert("Lütfen tutarlı miktar ve kdv Oranı giriniz")
+        alert("Lütfen tutarlı miktar ve kdv oranı giriniz")
         return
     }
     let taxIncludedStatus = calculateTax(taxPercent, amount)
