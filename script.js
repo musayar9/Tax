@@ -9,7 +9,7 @@ const taxValue = document.querySelector(".taxValue");
 const sumValue = document.querySelector(".sumValue")
 const taxSale = document.querySelector(".taxSale")
 const alertSale = document.querySelector(".alertSale")
-const taxPercent = document.querySelector(".taxPercent")
+const taxPercentValue = document.querySelector(".taxPercent")
 
 /**Vergiler Hariç */
 const taxExcluded = document.querySelector(".taxExcluded")
@@ -20,11 +20,12 @@ const percentExcluded = document.querySelector(".percentExcluded")
 
 const taxBtnFirst = document.querySelector(".tax-btn-one");
 const taxBtnSecond = document.querySelector(".tax-btn-two");
-let newAmount = ""
-let newSub = ""
 
-function formatTL(amount) {
-  return amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' TL';
+const formatMoney = (money) => {
+
+    const tl = money.toLocaleString("tr-TR", { style: "currency", currency: "TRY" });;
+    return tl
+
 }
 
 taxBtnFirst.addEventListener("click", () => {
@@ -34,9 +35,8 @@ taxBtnFirst.addEventListener("click", () => {
     if (taxBtnFirst.classList.contains("active")) {
         taxIncluded.classList.remove("d-none")
         taxExcluded.classList.add("d-none")
-        alertSale.classList.remove("d-none")
-    }
 
+    }
 
 })
 
@@ -47,30 +47,54 @@ taxBtnSecond.addEventListener("click", () => {
     if (taxBtnSecond.classList.contains("active")) {
         taxIncluded.classList.add("d-none")
         taxExcluded.classList.remove("d-none")
-        alertSale.classList.add("d-none")
-    }
 
+    }
 })
 
-const saleStatus = () => {
-    if (inputAmount.value >= 10000 && inputAmount.value <= 99999) {
-        taxSale.innerHTML = 500
-        alertSale.classList.remove("d-none")
-    } else if (inputAmount.value >= 100000) {
-        taxSale.innerHTML = 10000
-        alertSale.classList.remove("d-none")
-        subValue.innerHTML = inputAmount.value - taxSale.innerText
-    } else {
-        taxSale.innerHTML = 0
-        alertSale.classList.add("d-none")
-    }
 
-    if (inputAmount.value >= 10000) {
-        subValue.innerText = inputAmount.value - taxSale.innerHTML
-    } else {
-        subValue.innerText = "0,00"
+const calculateTax = (tax, amount) => {
+    let taxExcludedValue = (amount - (amount * tax))
+    let taxStatus = amount * tax
+    let amountTotal = amount + taxStatus
+
+    return {
+        taxExcludedValue: (taxExcludedValue),
+        taxStatus: (taxStatus),
+        amountTotal: (amountTotal)
     }
 }
+
+const resultArea = () => {
+
+    let inputValueStatus = parseFloat(inputVal.value)
+    let inputAmountStatus = parseFloat(inputAmount.value);
+
+    let taxPercent = inputValueStatus
+    let amount = inputAmountStatus
+    if (isNaN(amount) || isNaN(taxPercent)) {
+        alert("Lütfen tutarlı miktar ve kdv Oranı giriniz")
+        return
+    }
+    let taxIncludedStatus = calculateTax(taxPercent, amount)
+    //vergiler Dahil
+    sumValue.textContent = formatMoney(taxIncludedStatus.amountTotal)
+    subValue.textContent = formatMoney(taxIncludedStatus.taxExcludedValue)
+    taxValue.textContent = formatMoney(taxIncludedStatus.taxStatus)
+    taxPercentValue.innerHTML = `Vergi (${inputVal.value})`;
+
+    //vergiler Hariç
+    taxTotal.textContent = formatMoney(taxIncludedStatus.taxStatus)
+    taxExcludedSum.textContent = formatMoney(amount)
+    percentExcluded.innerHTML = `Vergi (${inputVal.value})`
+}
+inputAmount.addEventListener("keydown", function (event) {
+
+    if (event.key === "Enter") {
+        resultArea()
+    }
+    percentExcluded.innerHTML = `Vergi (${inputVal.value})`
+})
+
 
 taxItem.forEach((tax) => {
     tax.addEventListener("click", () => {
@@ -80,52 +104,19 @@ taxItem.forEach((tax) => {
 
         if (tax.classList.contains("active")) {
 
-            inputVal.value = (tax.innerText)            
-            newAmount = inputVal.value * inputAmount.value
-            taxValue.innerHTML = newAmount
-            taxPercent.innerHTML = `Vergi (${tax.innerText})`;
-            newSub = subValue.textContent          
-            sumValue.innerHTML = parseInt(newSub) + parseInt(newAmount)
-            
-
-            //vergiler Hariç
-            taxTotal.innerHTML = newAmount
-            percentExcluded.innerHTML = `Vergi (${tax.innerText})`
-            taxExcludedSum.innerHTML = inputAmount.value
-
-
+            if (tax.textContent === "%1") {
+                inputVal.value = 0.01
+            } else if (tax.textContent === "%8") {
+                inputVal.value = 0.08
+            } else {
+                inputVal.value = 0.18
+            }
         }
-
+       
+        resultArea()
     })
 })
 
-
-
-
-inputAmount.addEventListener("keydown", function (event) {
-
-    if (event.key === "Enter") {
-        newAmount = event.target.value * inputVal.value;
-        console.log(newAmount);
-        
-            saleStatus()
-        
-        console.log(subValue);
-        taxValue.innerHTML = newAmount
-
-        newSub = subValue.textContent
-        console.log(newSub);
-        sumValue.innerHTML = parseInt(newSub) + parseInt(newAmount)
-        taxPercent.innerHTML = `Vergi (${inputVal.value})`
-
-        //vergiler Hariç
-        taxTotal.innerHTML = newAmount
-        percentExcluded.innerHTML = `Vergi (${inputVal.value})`
-        taxExcludedSum.innerHTML = inputAmount.value
-
-    }
-
-})
 
 const removeActive = () => {
     taxItem.forEach(tax => {
